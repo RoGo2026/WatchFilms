@@ -3,36 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фильмы</title>
+    <title>Поиск фильмов</title>
     <style>
-        body { background:#111; color:white; font-family:Arial; text-align:center; padding:20px; margin:0; }
-        input { width:100%; max-width:580px; padding:17px; font-size:19px; border-radius:12px; border:none; margin:12px 0; box-sizing:border-box; }
-        button { width:100%; max-width:580px; padding:17px; font-size:19px; background:#e50914; color:white; border:none; border-radius:12px; margin:8px 0; font-weight:bold; }
+        body { background:#111; color:white; font-family:Arial; text-align:center; padding:30px 15px; margin:0; }
+        input { width:100%; max-width:580px; padding:18px; font-size:19px; border-radius:12px; border:none; margin:12px 0; }
+        button { width:100%; max-width:580px; padding:18px; font-size:20px; background:#e50914; color:white; border:none; border-radius:12px; margin:10px 0; font-weight:bold; }
         .paste-btn { background:#0066cc; }
-        .info { margin-top:35px; font-size:15px; opacity:0.8; }
+        .warning { color:#ffcc00; font-size:15px; margin:15px 0; }
     </style>
 </head>
 <body>
-
     <h1>Поиск фильмов</h1>
-    
-    <input type="text" id="search" placeholder="Название фильма" onkeydown="if(event.key === 'Enter') openSearch()" />
-    <button onclick="openSearch()">Открыть поиск</button>
 
-    <h2>Вставь ссылку с Кинопоиска</h2>
-    <input type="text" id="link" placeholder="Вставьте ссылку сюда..." />
+    <input type="text" id="link" placeholder="https://www.kinopoisk.ru/film/..." />
 
     <button onclick="changeDomain()">Открыть с плеером</button>
-    <button onclick="pasteFromClipboard()" class="paste-btn">📋 Вставить из буфера и открыть</button>
+    <button onclick="pasteAndOpen()" class="paste-btn">📋 Вставить из буфера и открыть</button>
 
-    <div class="info">
-        Если кнопка не работает — просто зажмите поле сверху и выберите "Вставить"
+    <div class="warning">
+        ⚠️ Кнопка "Вставить из буфера" работает только если сайт открыт по <strong>HTTPS</strong><br>
+       [](https://RoGo2026.github.io/...)<br><br>
+        Если не работает — зажмите поле выше и выберите «Вставить»
     </div>
 
     <script>
-    function openSearch() {
-        let name = document.getElementById("search").value.trim();
-        if (name) window.open("https://www.kinopoisk.ru/index.php?kp_query=" + encodeURIComponent(name), "_blank");
+    async function pasteAndOpen() {
+        try {
+            const text = await navigator.clipboard.readText();
+            
+            if (text && text.length > 10) {
+                document.getElementById("link").value = text;
+                const newUrl = text.replace("kinopoisk.ru", "kinopoisk.net");
+                window.open(newUrl, "_blank");
+            } else {
+                alert("Буфер обмена пуст");
+            }
+        } catch (err) {
+            alert("Не удалось прочитать буфер обмена.\n\nЗажмите поле и выберите «Вставить» вручную.");
+        }
     }
 
     function changeDomain() {
@@ -40,19 +48,6 @@
         if (url) {
             let newUrl = url.replace("kinopoisk.ru", "kinopoisk.net");
             window.open(newUrl, "_blank");
-        }
-    }
-
-    async function pasteFromClipboard() {
-        try {
-            const text = await navigator.clipboard.readText();
-            if (text) {
-                document.getElementById("link").value = text;
-                let newUrl = text.replace("kinopoisk.ru", "kinopoisk.net");
-                window.open(newUrl, "_blank");
-            }
-        } catch (e) {
-            alert("Не получилось прочитать буфер.\n\nЗажмите поле выше и выберите «Вставить»");
         }
     }
     </script>
