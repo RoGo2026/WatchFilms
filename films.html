@@ -9,7 +9,6 @@
         input { width:100%; max-width:580px; padding:18px; font-size:19px; border-radius:12px; border:none; margin:12px 0; }
         button { width:100%; max-width:580px; padding:18px; font-size:20px; background:#e50914; color:white; border:none; border-radius:12px; margin:10px 0; font-weight:bold; }
         .paste-btn { background:#0066cc; }
-        .dns-btn { background:#00aa66; margin-top:15px; }
         .instruction { 
             margin-top:60px; 
             padding:25px; 
@@ -22,6 +21,7 @@
             line-height:1.7; 
             font-size:16px;
         }
+        a.dns-link { color:#00dd88; text-decoration:underline; font-size:19px; }
     </style>
 </head>
 <body>
@@ -41,7 +41,11 @@
 
     <button onclick="changeDomain()">Открыть с плеером</button>
     <button onclick="pasteAndOpen()" class="paste-btn">📋 Вставить из буфера и открыть</button>
-    <button onclick="openOperaDNS()" class="dns-btn">⚙️ Настроить DNS в Opera</button>
+
+    <p style="margin:30px 0 10px 0; font-size:18px;">
+        Чтобы настроить DNS нажми сюда →
+        <a href="opera://settings/dns" target="_blank" class="dns-link">Настройки DNS в Opera</a>
+    </p>
 
     <div class="instruction">
         <strong>Как пользоваться сайтом:</strong><br><br>
@@ -79,10 +83,6 @@
             alert("Не удалось прочитать буфер обмена.\n\nЗажмите поле и выберите «Вставить»");
         }
     }
-
-    function openOperaDNS() {
-    window.open("opera://settings/dns", "_blank");
-}
     </script>
 </body>
 </html>
