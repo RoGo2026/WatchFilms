@@ -16,30 +16,10 @@
     <button onclick="searchMovie()">Найти</button>
 
     <script>
-    async function searchMovie() {
+    function searchMovie() {
         let query = document.getElementById("search").value.trim();
-        if (!query) return alert("Напиши название");
-
         let url = "https://www.kinopoisk.ru/index.php?kp_query=" + encodeURIComponent(query);
-        
-        try {
-            let res = await fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(url));
-            let data = await res.json();
-            let html = data.contents;
-
-            let regex = new RegExp('href="(/film/\\d+/)"[^> .*+?^${}()|[\]\\]/g, '\\$&') + '.*?</a>', 'i');
-            let match = html.match(regex);
-
-            if (match) {
-                let filmUrl = "https://www.kinopoisk.ru" + match[1];
-                let finalUrl = filmUrl.replace("kinopoisk.ru", "kinopoisk.net");
-                window.open(finalUrl, "_blank");
-            } else {
-                alert("Точное название не найдено");
-            }
-        } catch(e) {
-            alert("Ошибка");
-        }
+        window.open(url, "_blank");
     }
     </script>
 </body>
