@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск фильмов</title>
+    <style>
+        body { font-family: Arial; text-align: center; margin-top: 100px; background: #111; color: white; }
+        input { width: 450px; padding: 15px; font-size: 20px; border-radius: 8px; border: none; }
+        button { padding: 15px 30px; font-size: 20px; margin-left: 10px; border-radius: 8px; background: #e50914; color: white; border: none; cursor: pointer; }
+        button:hover { background: #f40612; }
+    </style>
+</head>
+<body>
+    <h1>Поиск фильмов</h1>
+    <input type="text" id="search" placeholder="Введите название фильма" />
+    <button onclick="searchMovie()">Найти</button>
+
+    <script>
+    async function searchMovie() {
+        let query = document.getElementById("search").value.trim();
+        if (!query) return alert("Напиши название фильма");
+
+        let url = "https://www.kinopoisk.ru/index.php?kp_query=" + encodeURIComponent(query);
+        
+        try {
+            let res = await fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(url));
+            let data = await res.json();
+            let html = data.contents;
+            
+            let match = html.match(/\/film\/(\d+)\//);
+            if (match) {
+                let filmUrl = "https://www.kinopoisk.net/film/" + match[1] + "/";
+                window.open(filmUrl, "_blank");
+            } else {
+                alert("Фильм не найден");
+            }
+        } catch(e) {
+            alert("Ошибка, попробуй ещё раз");
+        }
+    }
+    </script>
+</body>
+</html>
