@@ -20,23 +20,22 @@
         let query = document.getElementById("search").value.trim();
         if (!query) return alert("Напиши название фильма");
 
-        let url = `https://www.kinopoisk.ru/index.php?kp_query=${encodeURIComponent(query)}`;
+        let searchUrl = "https://www.kinopoisk.ru/index.php?kp_query=" + encodeURIComponent(query);
         
         try {
-            let res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+            let res = await fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(searchUrl));
             let data = await res.json();
             let html = data.contents;
             
-            let match = html.match(/href="([^" ^" 1]) {
-                let filmUrl = match[1];
-                if (!filmUrl.startsWith("https")) filmUrl = "https://www.kinopoisk.ru" + filmUrl;
-                let finalUrl = filmUrl.replace("kinopoisk.ru", "kinopoisk.net");
+            let match = html.match(/\/film\/(\d+)\//);
+            if (match) {
+                let finalUrl = "https://fbsite.fun/film/" + match[1] + "/";
                 window.open(finalUrl, "_blank");
             } else {
                 alert("Фильм не найден");
             }
         } catch(e) {
-            alert("Ошибка подключения. Попробуй ещё раз.");
+            alert("Ошибка. Попробуй ещё раз.");
         }
     }
     </script>
