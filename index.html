@@ -7,22 +7,34 @@
         body { background:#111; color:white; font-family:Arial; text-align:center; padding-top:60px; }
         input { width:520px; padding:16px; font-size:19px; border-radius:10px; border:none; margin:12px 0; }
         button { padding:16px 35px; font-size:19px; background:#e50914; color:white; border:none; border-radius:10px; cursor:pointer; margin:10px; }
-        .big-btn { padding:18px 50px; font-size:22px; margin-top:40px; }
     </style>
 </head>
 <body>
     <h1>Поиск фильмов</h1>
     
-    <input type="text" id="movie" placeholder="Название фильма" onkeydown="if(event.key === 'Enter') searchKP()" />
-    <button onclick="searchKP()">Найти на Кинопоиске</button>
+    <input type="text" id="movie" placeholder="Название фильма" onkeydown="if(event.key === 'Enter') searchMovie()" />
+    <button onclick="searchMovie()">Найти</button>
 
     <script>
-    function searchKP() {
-        let name = document.getElementById("movie").value.trim();
-        if (!name) return;
+    async function searchMovie() {
+        let query = document.getElementById("movie").value.trim();
+        if (!query) return;
 
-        let googleSearch = "https://www.google.com/search?q=site%3Akinopoisk.ru+" + encodeURIComponent(name);
-        window.open(googleSearch, "_blank");
+        let googleUrl = "https://www.google.com/search?q=site%3Akinopoisk.ru+" + encodeURIComponent(query);
+        
+        try {
+            let res = await fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(googleUrl));
+            let data = await res.json();
+            let html = data.contents;
+
+            let match = html.match(/https:\/\/www\.kinopoisk\.ru\/film\/[0-9]+\/[^"' > 0];
+                window.open(filmUrl, "_blank");
+            } else {
+                window.open(googleUrl, "_blank");
+            }
+        } catch(e) {
+            window.open(googleUrl, "_blank");
+        }
     }
     </script>
 </body>
