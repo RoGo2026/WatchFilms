@@ -16,25 +16,12 @@
     <button onclick="searchMovie()">Найти</button>
 
     <script>
-    async function searchMovie() {
-        let query = document.getElementById("movie").value.trim();
-        if (!query) return;
+    function searchMovie() {
+        let name = document.getElementById("movie").value.trim();
+        if (!name) return;
 
-        let googleUrl = "https://www.google.com/search?q=site%3Akinopoisk.ru+" + encodeURIComponent(query);
-        
-        try {
-            let res = await fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(googleUrl));
-            let data = await res.json();
-            let html = data.contents;
-
-            let match = html.match(/https:\/\/www\.kinopoisk\.ru\/film\/[0-9]+\/[^"' > 0];
-                window.open(filmUrl, "_blank");
-            } else {
-                window.open(googleUrl, "_blank");
-            }
-        } catch(e) {
-            window.open(googleUrl, "_blank");
-        }
+        let googleSearch = "https://www.google.com/search?q=site%3Akinopoisk.ru+" + encodeURIComponent(name);
+        window.open(googleSearch, "_blank");
     }
     </script>
 </body>
