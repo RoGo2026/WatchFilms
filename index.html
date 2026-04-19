@@ -3,33 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Поиск фильмов</title>
+    <title>Фильмы</title>
     <style>
-        body { background:#111; color:white; font-family:Arial; text-align:center; padding:25px 15px; margin:0; }
-        h1 { margin:0 0 25px 0; }
-        input { 
-            width:100%; 
-            max-width:580px; 
-            padding:18px; 
-            font-size:19px; 
-            border-radius:12px; 
-            border:none; 
-            margin:12px 0;
-        }
-        button { 
-            width:100%; 
-            max-width:580px; 
-            padding:18px; 
-            font-size:20px; 
-            background:#e50914; 
-            color:white; 
-            border:none; 
-            border-radius:12px; 
-            margin:8px 0; 
-            font-weight:bold;
-        }
+        body { background:#111; color:white; font-family:Arial; text-align:center; padding:20px; margin:0; }
+        input { width:100%; max-width:580px; padding:17px; font-size:19px; border-radius:12px; border:none; margin:12px 0; box-sizing:border-box; }
+        button { width:100%; max-width:580px; padding:17px; font-size:19px; background:#e50914; color:white; border:none; border-radius:12px; margin:8px 0; font-weight:bold; }
         .paste-btn { background:#0066cc; }
-        .instruction { margin-top:50px; font-size:16px; opacity:0.85; line-height:1.6; }
+        .info { margin-top:35px; font-size:15px; opacity:0.8; }
     </style>
 </head>
 <body>
@@ -39,23 +19,20 @@
     <input type="text" id="search" placeholder="Название фильма" onkeydown="if(event.key === 'Enter') openSearch()" />
     <button onclick="openSearch()">Открыть поиск</button>
 
-    <h2>Или вставь ссылку с Кинопоиска</h2>
-    <input type="text" id="link" placeholder="https://www.kinopoisk.ru/film/..." />
+    <h2>Вставь ссылку с Кинопоиска</h2>
+    <input type="text" id="link" placeholder="Вставьте ссылку сюда..." />
 
     <button onclick="changeDomain()">Открыть с плеером</button>
     <button onclick="pasteFromClipboard()" class="paste-btn">📋 Вставить из буфера и открыть</button>
 
-    <div class="instruction">
-        На ТВ-приставке и некоторых телефонах кнопка буфера может не работать.<br>
-        В этом случае просто вставьте ссылку вручную в поле выше.
+    <div class="info">
+        Если кнопка не работает — просто зажмите поле сверху и выберите "Вставить"
     </div>
 
     <script>
     function openSearch() {
         let name = document.getElementById("search").value.trim();
-        if (name) {
-            window.open("https://www.kinopoisk.ru/index.php?kp_query=" + encodeURIComponent(name), "_blank");
-        }
+        if (name) window.open("https://www.kinopoisk.ru/index.php?kp_query=" + encodeURIComponent(name), "_blank");
     }
 
     function changeDomain() {
@@ -69,15 +46,13 @@
     async function pasteFromClipboard() {
         try {
             const text = await navigator.clipboard.readText();
-            if (text.includes("kinopoisk")) {
+            if (text) {
+                document.getElementById("link").value = text;
                 let newUrl = text.replace("kinopoisk.ru", "kinopoisk.net");
                 window.open(newUrl, "_blank");
-            } else if (text) {
-                document.getElementById("link").value = text;
-                alert("Ссылка вставлена. Нажмите «Открыть с плеером»");
             }
         } catch (e) {
-            alert("Не удалось прочитать буфер обмена.\n\nВставьте ссылку вручную в поле выше.");
+            alert("Не получилось прочитать буфер.\n\nЗажмите поле выше и выберите «Вставить»");
         }
     }
     </script>
