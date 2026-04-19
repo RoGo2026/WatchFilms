@@ -21,7 +21,8 @@
             line-height:1.7; 
             font-size:16px;
         }
-        a.dns-link { color:#00dd88; text-decoration:underline; font-size:19px; }
+        .copy-link { color:#00dd88; cursor:pointer; text-decoration:underline; }
+        .copy-link:hover { color:#00ff99; }
     </style>
 </head>
 <body>
@@ -42,17 +43,17 @@
     <button onclick="changeDomain()">Открыть с плеером</button>
     <button onclick="pasteAndOpen()" class="paste-btn">📋 Вставить из буфера и открыть</button>
 
-    <p style="margin:30px 0 10px 0; font-size:18px;">
-        Чтобы настроить DNS нажми сюда →
-        <a href="opera://settings/dns" target="_blank" class="dns-link">Настройки DNS в Opera</a>
-    </p>
-
     <div class="instruction">
         <strong>Как пользоваться сайтом:</strong><br><br>
         1. Введи название фильма, сериала, тв передачи в первое поле и нажми «Поиск».<br>
         2. Найди нужный фильм и перейди на него, сверху скопируй ссылку.<br>
         3. Нажми кнопку «Вставить из буфера и открыть».<br>
         4. Вставь ссылку во второе поле и нажми «Открыть с плеером».<br>
+        5. Чтобы настроить DNS AdGuard:<br>
+           • Opera — <span class="copy-link" onclick="copyToClipboard('opera://settings/dns')">opera://settings/dns</span><br>
+           • Google Chrome — <span class="copy-link" onclick="copyToClipboard('chrome://settings/security')">chrome://settings/security</span><br>
+           • Яндекс.Браузер — <span class="copy-link" onclick="copyToClipboard('browser://settings/security')">browser://settings/security</span><br>
+           <small style="color:#888;">(нажми на ссылку — она скопируется в буфер)</small>
     </div>
 
     <script>
@@ -82,6 +83,14 @@
         } catch (e) {
             alert("Не удалось прочитать буфер обмена.\n\nЗажмите поле и выберите «Вставить»");
         }
+    }
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Ссылка скопирована в буфер обмена! Теперь вставь её в адресную строку браузера.");
+        }).catch(() => {
+            alert("Не удалось скопировать. Скопируй вручную: " + text);
+        });
     }
     </script>
 </body>
