@@ -21,7 +21,14 @@
         <div id="error" class="error hidden"></div>
         
         <div class="note">
-        
+            <div class="dns-notice">
+                <p>📡 Чтобы отключить рекламу на сайте:<br>
+                зайди в настройки браузера, в поиске набери <strong>DNS</strong>, выбери <strong>пользовательский профиль</strong> и в пустое поле вставь ссылку:</p>
+                <div class="dns-link-container">
+                    <code id="dnsLink">https://dns.adguard-dns.com/dns-query</code>
+                    <button id="copyDnsBtn" class="copy-btn" onclick="copyDnsLink()">📋 Копировать</button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
