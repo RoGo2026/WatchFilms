@@ -237,3 +237,31 @@ button:active {
         padding: 14px 16px;
     }
 }
+/* Кликабельная ссылка — жирное выделение */
+.clickable-link {
+    display: block;
+    padding: 14px 18px;
+    background: rgba(204, 0, 0, 0.15);
+    border: 1.5px dashed rgba(204, 0, 0, 0.5);
+    border-radius: 14px;
+    font-family: 'Courier New', monospace;
+    font-size: 15px;
+    font-weight: 700; /* жирное начертание */
+    color: #ff8888;
+    word-break: break-all;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 8px rgba(204, 0, 0, 0.2);
+}
+
+.clickable-link:hover {
+    background: rgba(204, 0, 0, 0.3);
+    color: #ffcccc;
+    border: 1.5px solid #cc0000;
+    box-shadow: 0 0 12px rgba(204, 0, 0, 0.4);
+    transform: scale(1.01);
+}
