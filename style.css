@@ -7,7 +7,6 @@
 
 body {
     font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
-    /* Тёмный фон с градиентом вместо белого */
     background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
     min-height: 100vh;
     margin: 0;
@@ -18,7 +17,6 @@ body {
     color: #e0e0e0;
 }
 
-/* Основной контейнер */
 .container {
     width: 100%;
     max-width: 600px;
@@ -29,15 +27,14 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 28px;
     padding: 24px 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.1) inset;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(230, 0, 0, 0.15) inset;
 }
 
-/* Заголовки */
 h1 {
     font-size: clamp(24px, 8vw, 32px);
     font-weight: 600;
     margin-bottom: 8px;
-    background: linear-gradient(135deg, #ff8c42, #ff5500);
+    background: linear-gradient(135deg, #ff4d4d, #cc0000);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -51,7 +48,6 @@ p {
     line-height: 1.5;
 }
 
-/* Поле поиска и кнопка */
 .search-box {
     display: flex;
     flex-direction: column;
@@ -59,7 +55,6 @@ p {
     margin-bottom: 24px;
 }
 
-/* На планшетах и десктопах делаем в строку */
 @media (min-width: 480px) {
     .search-box {
         flex-direction: row;
@@ -76,13 +71,13 @@ p {
     color: #ffffff;
     outline: none;
     transition: all 0.2s ease;
-    -webkit-appearance: none; /* убирает странные тени на iOS */
+    -webkit-appearance: none;
 }
 
 #movieInput:focus {
-    border-color: #ff5500;
+    border-color: #cc0000;
     background: rgba(25, 25, 45, 1);
-    box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.2);
+    box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.2);
 }
 
 #movieInput::placeholder {
@@ -94,38 +89,36 @@ button {
     padding: 16px 24px;
     font-size: 16px;
     font-weight: 600;
-    background: linear-gradient(135deg, #ff5500, #cc4400);
+    background: linear-gradient(135deg, #e60000, #990000);
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 6px 14px rgba(255, 85, 0, 0.25);
+    box-shadow: 0 6px 14px rgba(230, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.05);
     letter-spacing: 0.3px;
     white-space: nowrap;
 }
 
 button:hover {
-    background: linear-gradient(135deg, #ff6a1a, #dd5500);
+    background: linear-gradient(135deg, #ff1a1a, #b30000);
     transform: scale(1.02);
-    box-shadow: 0 8px 18px rgba(255, 85, 0, 0.35);
+    box-shadow: 0 8px 18px rgba(230, 0, 0, 0.4);
 }
 
 button:active {
     transform: scale(0.98);
 }
 
-/* Индикатор загрузки */
 .loading {
     text-align: center;
     padding: 30px 10px;
-    color: #ffaa66;
+    color: #ff8080;
     font-size: 18px;
     font-weight: 500;
 }
 
-/* Список результатов */
 .results {
     display: flex;
     flex-direction: column;
@@ -136,16 +129,14 @@ button:active {
     padding-right: 4px;
 }
 
-/* Полоса прокрутки для результатов */
 .results::-webkit-scrollbar {
     width: 5px;
 }
 .results::-webkit-scrollbar-thumb {
-    background: #ff5500;
+    background: #cc0000;
     border-radius: 10px;
 }
 
-/* Карточка фильма */
 .movie-item {
     display: flex;
     align-items: center;
@@ -161,7 +152,7 @@ button:active {
 
 .movie-item:hover {
     background: rgba(40, 40, 70, 0.8);
-    border-color: rgba(255, 85, 0, 0.3);
+    border-color: rgba(204, 0, 0, 0.4);
     transform: translateY(-2px);
 }
 
@@ -177,7 +168,7 @@ button:active {
 
 .movie-info {
     flex: 1;
-    min-width: 0; /* чтобы текст не вылезал */
+    min-width: 0;
 }
 
 .movie-title {
@@ -190,7 +181,6 @@ button:active {
     text-overflow: ellipsis;
 }
 
-/* На телефонах разрешаем перенос названия, если длинное */
 @media (max-width: 480px) {
     .movie-title {
         white-space: normal;
@@ -206,7 +196,6 @@ button:active {
     gap: 4px 10px;
 }
 
-/* Ошибка */
 .error {
     color: #ff7b7b;
     text-align: center;
@@ -214,17 +203,15 @@ button:active {
     background: rgba(180, 40, 40, 0.15);
     border-radius: 20px;
     margin: 20px 0;
-    border-left: 4px solid #ff5500;
+    border-left: 4px solid #cc0000;
     font-weight: 500;
     backdrop-filter: blur(4px);
 }
 
-/* Скрытие элементов */
 .hidden {
     display: none !important;
 }
 
-/* Примечание внизу */
 .note {
     margin-top: 30px;
     padding-top: 18px;
@@ -235,7 +222,6 @@ button:active {
     line-height: 1.5;
 }
 
-/* Дополнительные улучшения для совсем маленьких экранов */
 @media (max-width: 380px) {
     body {
         padding: 10px;
