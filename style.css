@@ -1,0 +1,90 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 700px;
+}
+h1 { color: #333; margin-bottom: 0.5rem; }
+p { color: #666; margin-bottom: 1.5rem; }
+.search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+}
+input:focus { border-color: #ff5500; }
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #ff5500;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover { background-color: #e04e00; }
+.loading { text-align: center; padding: 20px; color: #ff5500; }
+.results { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.movie-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+.movie-item:hover { background-color: #f9f9f9; }
+.movie-poster {
+    width: 50px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+}
+.movie-info { flex-grow: 1; }
+.movie-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+.movie-details {
+    font-size: 14px;
+    color: #777;
+}
+.error {
+    color: #d32f2f;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffebee;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+.hidden { display: none; }
+.note {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 0.9em;
+    color: #888;
+    text-align: center;
+}
