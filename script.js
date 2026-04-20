@@ -23,7 +23,7 @@ async function searchMovies() {
     }
 
     // 🔑 ЗАМЕНИТЕ НА СВОЙ РАБОЧИЙ КЛЮЧ ОТ @kinopoiskdev_bot
-    const API_KEY = 'SPBMTQJ-ZG0MAKD-KGFMBYS-VMB75QF';
+    const API_KEY = '3W9C8C5-2H1M85S-GEXEN27-S5DG27B';
     const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=10&query=${encodeURIComponent(query)}`;
 
     const loading = document.getElementById('loading');
