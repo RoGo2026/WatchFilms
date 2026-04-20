@@ -1,90 +1,253 @@
+/* Общие сбросы и базовые стили */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+    /* Тёмный фон с градиентом вместо белого */
+    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
     min-height: 100vh;
     margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e0e0e0;
 }
+
+/* Основной контейнер */
 .container {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-    width: 90%;
-    max-width: 700px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(30, 30, 50, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    padding: 24px 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.1) inset;
 }
-h1 { color: #333; margin-bottom: 0.5rem; }
-p { color: #666; margin-bottom: 1.5rem; }
-.search-box { display: flex; gap: 10px; margin-bottom: 20px; }
-input {
-    flex-grow: 1;
-    padding: 12px 15px;
+
+/* Заголовки */
+h1 {
+    font-size: clamp(24px, 8vw, 32px);
+    font-weight: 600;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #ff8c42, #ff5500);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+}
+
+p {
+    color: #b0b0c0;
+    margin-bottom: 24px;
+    font-size: clamp(14px, 4vw, 16px);
+    line-height: 1.5;
+}
+
+/* Поле поиска и кнопка */
+.search-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+/* На планшетах и десктопах делаем в строку */
+@media (min-width: 480px) {
+    .search-box {
+        flex-direction: row;
+    }
+}
+
+#movieInput {
+    flex: 1;
+    padding: 16px 18px;
     font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 6px;
+    background: rgba(20, 20, 35, 0.9);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    color: #ffffff;
     outline: none;
+    transition: all 0.2s ease;
+    -webkit-appearance: none; /* убирает странные тени на iOS */
 }
-input:focus { border-color: #ff5500; }
+
+#movieInput:focus {
+    border-color: #ff5500;
+    background: rgba(25, 25, 45, 1);
+    box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.2);
+}
+
+#movieInput::placeholder {
+    color: #7a7a9a;
+    opacity: 0.7;
+}
+
 button {
-    padding: 12px 25px;
+    padding: 16px 24px;
     font-size: 16px;
-    background-color: #ff5500;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ff5500, #cc4400);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 14px rgba(255, 85, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
 }
-button:hover { background-color: #e04e00; }
-.loading { text-align: center; padding: 20px; color: #ff5500; }
-.results { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+
+button:hover {
+    background: linear-gradient(135deg, #ff6a1a, #dd5500);
+    transform: scale(1.02);
+    box-shadow: 0 8px 18px rgba(255, 85, 0, 0.35);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Индикатор загрузки */
+.loading {
+    text-align: center;
+    padding: 30px 10px;
+    color: #ffaa66;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Список результатов */
+.results {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+/* Полоса прокрутки для результатов */
+.results::-webkit-scrollbar {
+    width: 5px;
+}
+.results::-webkit-scrollbar-thumb {
+    background: #ff5500;
+    border-radius: 10px;
+}
+
+/* Карточка фильма */
 .movie-item {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 15px;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    transition: background-color 0.2s;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(25, 25, 45, 0.7);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
     cursor: pointer;
+    transition: all 0.15s ease;
 }
-.movie-item:hover { background-color: #f9f9f9; }
+
+.movie-item:hover {
+    background: rgba(40, 40, 70, 0.8);
+    border-color: rgba(255, 85, 0, 0.3);
+    transform: translateY(-2px);
+}
+
 .movie-poster {
-    width: 50px;
-    height: 75px;
+    width: 55px;
+    height: 80px;
     object-fit: cover;
-    border-radius: 4px;
-    background-color: #f0f0f0;
+    border-radius: 12px;
+    background: #2a2a4a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
 }
-.movie-info { flex-grow: 1; }
+
+.movie-info {
+    flex: 1;
+    min-width: 0; /* чтобы текст не вылезал */
+}
+
 .movie-title {
     font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
+/* На телефонах разрешаем перенос названия, если длинное */
+@media (max-width: 480px) {
+    .movie-title {
+        white-space: normal;
+        font-size: 16px;
+    }
+}
+
 .movie-details {
-    font-size: 14px;
-    color: #777;
+    font-size: 13px;
+    color: #b0b0d0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
 }
+
+/* Ошибка */
 .error {
-    color: #d32f2f;
+    color: #ff7b7b;
     text-align: center;
     padding: 20px;
-    background-color: #ffebee;
-    border-radius: 8px;
-    margin-top: 20px;
+    background: rgba(180, 40, 40, 0.15);
+    border-radius: 20px;
+    margin: 20px 0;
+    border-left: 4px solid #ff5500;
+    font-weight: 500;
+    backdrop-filter: blur(4px);
 }
-.hidden { display: none; }
+
+/* Скрытие элементов */
+.hidden {
+    display: none !important;
+}
+
+/* Примечание внизу */
 .note {
     margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    font-size: 0.9em;
-    color: #888;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 13px;
+    color: #9a9ab0;
     text-align: center;
+    line-height: 1.5;
+}
+
+/* Дополнительные улучшения для совсем маленьких экранов */
+@media (max-width: 380px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 20px 16px;
+    }
+    button {
+        padding: 16px 18px;
+        font-size: 15px;
+    }
+    #movieInput {
+        padding: 14px 16px;
+    }
 }
