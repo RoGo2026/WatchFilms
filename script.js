@@ -92,7 +92,7 @@ function displayResults(movies) {
 
 function openMovie(kinopoiskId) {
     const netUrl = `https://www.kinopoisk.wtf/film/${kinopoiskId}/`;
-    window.open(netUrl, '_blank');
+    window.open(wtfUrl, '_blank');
 }
 
 function showError(message) {
