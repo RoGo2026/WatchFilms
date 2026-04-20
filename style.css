@@ -237,8 +237,9 @@ button:active {
         padding: 14px 16px;
     }
 }
-/* Кликабельная ссылка — жирное выделение */
-.clickable-link {
+/* Кликабельная ссылка — жирное выделение (усиленный селектор) */
+code.clickable-link,
+#dnsLink.clickable-link {
     display: block;
     padding: 14px 18px;
     background: rgba(204, 0, 0, 0.15);
@@ -246,7 +247,7 @@ button:active {
     border-radius: 14px;
     font-family: 'Courier New', monospace;
     font-size: 15px;
-    font-weight: 700; /* жирное начертание */
+    font-weight: 700 !important; /* принудительно жирный */
     color: #ff8888;
     word-break: break-all;
     cursor: pointer;
@@ -258,7 +259,8 @@ button:active {
     box-shadow: 0 0 8px rgba(204, 0, 0, 0.2);
 }
 
-.clickable-link:hover {
+code.clickable-link:hover,
+#dnsLink.clickable-link:hover {
     background: rgba(204, 0, 0, 0.3);
     color: #ffcccc;
     border: 1.5px solid #cc0000;
