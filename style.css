@@ -26,22 +26,32 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
+/* Вверху по центру (Interstellar) */
+.top-center { 
+    top: 2%; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 200px; 
+    opacity: 0.4;
+    z-index: 0;
+}
+
 /* Расположение слева */
-.left-1 { top: 5%; left: 1%; width: 160px; transform: rotate(-3deg); }
-.left-2 { top: 35%; left: 2%; width: 140px; transform: rotate(2deg); }
-.left-3 { top: 65%; left: 1%; width: 150px; transform: rotate(-2deg); }
+.left-1 { top: 8%; left: 1%; width: 160px; transform: rotate(-3deg); }
+.left-2 { top: 38%; left: 2%; width: 140px; transform: rotate(2deg); }
+.left-3 { top: 68%; left: 1%; width: 150px; transform: rotate(-2deg); }
 
 /* Расположение справа */
-.right-1 { top: 5%; right: 1%; width: 160px; transform: rotate(3deg); }
-.right-2 { top: 35%; right: 2%; width: 140px; transform: rotate(-2deg); }
-.right-3 { top: 65%; right: 1%; width: 150px; transform: rotate(2deg); }
+.right-1 { top: 8%; right: 1%; width: 160px; transform: rotate(3deg); }
+.right-2 { top: 38%; right: 2%; width: 140px; transform: rotate(-2deg); }
+.right-3 { top: 68%; right: 1%; width: 150px; transform: rotate(2deg); }
 
 /* Внизу */
 .bottom-1 { bottom: 3%; left: 50%; transform: translateX(-50%); width: 180px; opacity: 0.25; }
-.bottom-2 { bottom: 3%; right: 10%; width: 160px; opacity: 0.25; }
 
 /* Адаптация для планшетов и телефонов — уменьшаем картинки */
 @media (max-width: 900px) {
+    .top-center { width: 140px; }
     .left-1 { width: 100px; left: 0%; }
     .left-2 { width: 90px; left: 1%; }
     .left-3 { width: 95px; left: 0%; }
@@ -51,20 +61,19 @@
     .right-3 { width: 95px; right: 0%; }
     
     .bottom-1 { width: 120px; }
-    .bottom-2 { width: 100px; right: 5%; }
 }
 
 @media (max-width: 600px) {
-    .left-1 { width: 70px; top: 3%; }
-    .left-2 { width: 65px; top: 25%; }
-    .left-3 { width: 68px; top: 50%; }
+    .top-center { width: 100px; top: 1%; }
+    .left-1 { width: 70px; top: 6%; }
+    .left-2 { width: 65px; top: 28%; }
+    .left-3 { width: 68px; top: 53%; }
     
-    .right-1 { width: 70px; top: 3%; }
-    .right-2 { width: 65px; top: 25%; }
-    .right-3 { width: 68px; top: 50%; }
+    .right-1 { width: 70px; top: 6%; }
+    .right-2 { width: 65px; top: 28%; }
+    .right-3 { width: 68px; top: 53%; }
     
     .bottom-1 { width: 90px; bottom: 2%; }
-    .bottom-2 { width: 75px; }
 }
 
 body {
