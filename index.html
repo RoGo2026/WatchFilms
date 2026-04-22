@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>КиноПоиск - Поиск фильмов</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Найти фильм на Кинопоиск</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Декоративные картинки (появятся на больших экранах) -->
-  <div class="wallpaper-decoration">
-    <!-- Левая сторона -->
-    <img src="img/dune.jpg" class="deco-img deco-left-1" alt="">
-    <img src="img/lotr.jpg" class="deco-img deco-left-2" alt="">
-    
-    <!-- Правая сторона -->
-    <img src="img/godzilla.jpg" class="deco-img deco-right-1" alt="">
-    <img src="img/batman.jpg" class="deco-img deco-right-2" alt="">
-    
-    <!-- Внизу -->
-    <img src="img/avatar.jpg" class="deco-img deco-bottom" alt="">
-  </div>
-
-  <!-- Основной контент -->
-  <div class="container">
-    <header class="header">
-      <h1>🎬 КиноПоиск</h1>
-      <p>Найди любимый фильм за секунду</p>
-    </header>
-
-    <div class="search-box">
-      <input type="text" id="movieInput" placeholder="Введите название фильма..." autocomplete="off">
-      <button id="searchButton">Найти</button>
+    <!-- ДЕКОРАТИВНЫЕ КАРТИНКИ -->
+    <div class="bg-wallpaper">
+        <!-- Левая сторона -->
+        <img src="img/dune.jpg" class="wallpaper left-1" alt="">
+        <img src="img/lotr.jpg" class="wallpaper left-2" alt="">
+        <img src="img/spiderman.jpg" class="wallpaper left-3" alt="">
+        
+        <!-- Правая сторона -->
+        <img src="img/godzilla.jpg" class="wallpaper right-1" alt="">
+        <img src="img/batman.jpg" class="wallpaper right-2" alt="">
+        <img src="img/matrix.jpg" class="wallpaper right-3" alt="">
+        
+        <!-- Внизу -->
+        <img src="img/avatar.jpg" class="wallpaper bottom-1" alt="">
+        <img src="img/interstellar.jpg" class="wallpaper bottom-2" alt="">
     </div>
 
-    <div id="loading" class="loading hidden"> Ищем фильмы...</div>
-    <div id="error" class="error hidden"></div>
-    <div id="results" class="results"></div>
-
-    <div class="note">
-      <p>Чтобы отключить рекламу:</p>
-      <code id="dnsLink" class="clickable-link" onclick="copyDnsLink()">https://dns.adguard-dns.com/dns-query</code>
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <div class="container">
+        <h1>🎬 Поиск фильма</h1>
+        <p>Введите название фильма и выберите подходящий вариант из списка.</p>
+        
+        <div class="search-box">
+            <input type="text" id="movieInput" placeholder="Поиск...">
+            <button id="searchButton">Найти</button>
+        </div>
+        
+        <div id="loading" class="loading hidden">⏳ Загрузка...</div>
+        <div id="error" class="error hidden"></div>
+        <div id="results" class="results"></div>
+        
+        <div class="note">
+            Чтобы отключить рекламу на сайте:<br>
+            зайди в настройки браузера, в поиске набери DNS, выбери пользовательский профиль и в пустое поле вставь ссылку:<br>
+            <code id="dnsLink" class="clickable-link" onclick="copyDnsLink()">https://dns.adguard-dns.com/dns-query</code><br>
+            <small>(нажми на ссылку, она скопируется)</small>
+        </div>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
