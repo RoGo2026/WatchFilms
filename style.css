@@ -1,3 +1,27 @@
+/* Иконка хлопушки рядом с заголовком */
+.clapper-icon {
+    width: 42px;
+    height: 42px;
+    vertical-align: middle;
+    margin-right: 12px;
+    margin-bottom: 4px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    animation: clapperFloat 3s ease-in-out infinite;
+}
+
+@keyframes clapperFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-3px) rotate(-5deg); }
+}
+
+@media (max-width: 480px) {
+    .clapper-icon {
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+    }
+}
+
 /* Общие сбросы и базовые стили */
 * {
     box-sizing: border-box;
@@ -112,6 +136,8 @@ h1 {
     background-clip: text;
     color: transparent;
     letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
 }
 
 p {
