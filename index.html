@@ -7,40 +7,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="cinema-grid">
-        <!-- ЛЕВАЯ ПАНЕЛЬ – статичные постеры (только для вида) -->
-        <div class="poster-panel">
-            <div class="panel-header">
-                <h2>CINEVERSE</h2>
-                <p>Кино, которое вдохновляет</p>
-            </div>
-            <div class="movie-card">
-                <div class="poster-placeholder">★ 8.6</div>
-                <h3>Интерстеллар</h3>
-                <div class="movie-meta"><span class="year">2014</span></div>
-            </div>
-            <div class="movie-card">
-                <div class="poster-placeholder">★ 8.7</div>
-                <h3>Дюна: Часть вторая</h3>
-                <div class="movie-meta"><span class="year">2024</span></div>
-            </div>
-            <div class="movie-card">
-                <div class="poster-placeholder">★ 8.0</div>
-                <h3>Бегущий по лезвию 2049</h3>
-                <div class="movie-meta"><span class="year">2017</span></div>
-            </div>
-            <div class="movie-card">
-                <div class="poster-placeholder">★ 8.4</div>
-                <h3>Джокер</h3>
-                <div class="movie-meta"><span class="year">2019</span></div>
-            </div>
+    <div class="cinema-layout">
+        <!-- ЛЕВАЯ ПАНЕЛЬ – только картинки -->
+        <div class="poster-wall left">
+            <div class="poster"></div>
+            <div class="poster"></div>
+            <div class="poster"></div>
+            <div class="poster"></div>
         </div>
 
-        <!-- ЦЕНТРАЛЬНАЯ ПАНЕЛЬ – ПОИСК (БЕЗ ИЗМЕНЕНИЙ) -->
-        <div class="search-panel">
+        <!-- ЦЕНТРАЛЬНАЯ ПАНЕЛЬ – ПОЛНОСТЬЮ ИЗ ВАШЕГО ИСХОДНИКА (без изменений) -->
+        <div class="container">
             <h1>🎬 Поиск фильма</h1>
             <p>Введите название фильма и выберите подходящий вариант из списка.</p>
-
+            
             <div class="search-box">
                 <input type="text" id="movieInput" placeholder="Например: Интерстеллар">
                 <button id="searchButton">Найти</button>
@@ -49,8 +29,7 @@
             <div id="loading" class="loading hidden">Поиск...</div>
             <div id="results" class="results"></div>
             <div id="error" class="error hidden"></div>
-
-            <!-- Инструкция DNS (как было) -->
+            
             <div class="note">
                 <div class="dns-notice">
                     <p>Чтобы отключить рекламу на сайте:<br>
@@ -61,39 +40,12 @@
             </div>
         </div>
 
-        <!-- ПРАВАЯ ПАНЕЛЬ – статичные постеры -->
-        <div class="poster-panel">
-            <div class="panel-header">
-                <h2>KINOHUB</h2>
-                <p>Погрузись в мир великого кино</p>
-            </div>
-            <div class="movie-card">
-                <div class="poster-placeholder">★ 8.6</div>
-                <h3>Оппенгеймер</h3>
-                <div class="movie-meta"><span class="year">2023</span></div>
-            </div>
-            <div class="movie-card">
-                <div class="poster-placeholder">★ 7.9</div>
-                <h3>Аватар: Путь воды</h3>
-                <div class="movie-meta"><span class="year">2022</span></div>
-            </div>
-            <div class="movie-card">
-                <div class="poster-placeholder">★ 6.5</div>
-                <h3>Годзилла и Конг</h3>
-                <div class="movie-meta"><span class="year">2024</span></div>
-            </div>
-
-            <div class="legend-block">
-                <h3>Культовые</h3>
-                <div class="legend-item">
-                    <div class="legend-placeholder">TDK</div>
-                    <span class="legend-title">THE DARK KNIGHT</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-placeholder">PF</div>
-                    <span class="legend-title">PULP FICTION</span>
-                </div>
-            </div>
+        <!-- ПРАВАЯ ПАНЕЛЬ – только картинки -->
+        <div class="poster-wall right">
+            <div class="poster"></div>
+            <div class="poster"></div>
+            <div class="poster"></div>
+            <div class="poster"></div>
         </div>
     </div>
 
