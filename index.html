@@ -1,188 +1,49 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Поиск фильмов в обрамлении постеров</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-            background: radial-gradient(circle at 20% 20%, #1e1a2e, #0b0a12);
-            min-height: 100vh;
-            margin: 0;
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #e0e0e0;
-        }
-
-        .poster-grid {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            grid-template-rows: auto auto;
-            gap: 20px;
-            max-width: 1600px;
-            width: 100%;
-            margin: 0 auto;
-            align-items: center;
-            justify-items: center;
-        }
-
-        .left-posters, .right-posters {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            justify-content: center;
-            width: 100%;
-            max-width: 240px;
-        }
-
-        .left-posters {
-            grid-column: 1 / 2;
-            grid-row: 1 / 2;
-            justify-self: end;
-        }
-
-        .right-posters {
-            grid-column: 3 / 4;
-            grid-row: 1 / 2;
-            justify-self: start;
-        }
-
-        .bottom-posters {
-            grid-column: 1 / -1;
-            grid-row: 2 / 3;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .poster {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(230, 50, 70, 0.3);
-            background: #1e1630;
-            transition: transform 0.2s;
-            display: block;
-        }
-
-        .poster:hover {
-            transform: scale(1.02);
-        }
-
-        .bottom-posters .poster {
-            width: auto;
-            max-width: 180px;
-            max-height: 130px;
-            border-radius: 16px;
-        }
-
-        /* Твой оригинальный блок .container */
-        .container {
-            grid-column: 2 / 3;
-            grid-row: 1 / 2;
-            max-width: 600px;
-            min-width: 320px;
-            width: 100%;
-            background: rgba(30, 30, 50, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 28px;
-            padding: 24px 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(230, 0, 0, 0.15) inset;
-        }
-
-        @media (max-width: 850px) {
-            .poster-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-                height: auto;
-            }
-            .left-posters, .right-posters, .bottom-posters {
-                display: none;
-            }
-            body {
-                height: auto;
-                padding: 16px;
-            }
-        }
-
-        @media (min-width: 1400px) {
-            .left-posters, .right-posters {
-                max-width: 280px;
-            }
-            .bottom-posters .poster {
-                max-width: 200px;
-                max-height: 150px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>КиноПоиск - Поиск фильмов</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="poster-grid">
-        <!-- ЛЕВАЯ КОЛОНКА (3 постера) -->
-        <div class="left-posters">
-            <img class="poster" src="https://www.film.ru/sites/default/files/images/Interstellar(1).jpg" alt="Интерстеллар">
-            <img class="poster" src="https://www.film.ru/sites/default/files/filefield_paths/dune_part_two_ver2.jpg" alt="Дюна: Часть вторая">
-            <img class="poster" src="https://www.film.ru/sites/default/files/filefield_paths/oppenheimer_ver2.jpg" alt="Оппенгеймер">
-        </div>
 
-        <!-- ТВОЙ ОРИГИНАЛЬНЫЙ ЦЕНТРАЛЬНЫЙ БЛОК (НЕ ТРОГАЛ) -->
-        <div class="container">
-            <h1>🎬 Поиск фильма</h1>
-            <p>Введите название фильма и выберите подходящий вариант из списка.</p>
-            
-            <div class="search-box">
-                <input type="text" id="movieInput" placeholder="Например: Интерстеллар">
-                <button id="searchButton">Найти</button>
-            </div>
+  <!-- Декоративные картинки (появятся на больших экранах) -->
+  <div class="wallpaper-decoration">
+    <!-- Левая сторона -->
+    <img src="img/dune.jpg" class="deco-img deco-left-1" alt="">
+    <img src="img/lotr.jpg" class="deco-img deco-left-2" alt="">
+    
+    <!-- Правая сторона -->
+    <img src="img/godzilla.jpg" class="deco-img deco-right-1" alt="">
+    <img src="img/batman.jpg" class="deco-img deco-right-2" alt="">
+    
+    <!-- Внизу -->
+    <img src="img/avatar.jpg" class="deco-img deco-bottom" alt="">
+  </div>
 
-            <div id="loading" class="loading hidden">Поиск...</div>
-            <div id="results" class="results"></div>
-            <div id="error" class="error hidden"></div>
-            
-            <div class="note">
-                <div class="dns-notice">
-                    <p>Чтобы отключить рекламу на сайте:<br>
-                    зайди в настройки браузера, в поиске набери <strong>DNS</strong>, выбери <strong>пользовательский профиль</strong> и в пустое поле вставь ссылку:</p>
-                    <code id="dnsLink" class="clickable-link" onclick="copyDnsLink()">https://dns.adguard-dns.com/dns-query</code>
-                    <p class="click-hint">(нажми на ссылку, она скопируется)</p>
-                </div>
-            </div>
-        </div>
+  <!-- Основной контент -->
+  <div class="container">
+    <header class="header">
+      <h1>🎬 КиноПоиск</h1>
+      <p>Найди любимый фильм за секунду</p>
+    </header>
 
-        <!-- ПРАВАЯ КОЛОНКА (3 постера) -->
-        <div class="right-posters">
-            <img class="poster" src="https://www.film.ru/sites/default/files/filefield_paths/avatar_the_way_of_water_ver2.jpg" alt="Аватар: Путь воды">
-            <img class="poster" src="https://www.film.ru/sites/default/files/filefield_paths/godzilla_vs_kong_new_empire_ver2.jpg" alt="Годзилла и Конг: Новая империя">
-            <img class="poster" src="https://www.film.ru/sites/default/files/filefield_paths/mission_impossible_dead_reckoning_part_one_ver2.jpg" alt="Миссия невыполнима 7">
-        </div>
-
-        <!-- НИЖНИЙ РЯД (4 постера) -->
-        <div class="bottom-posters">
-            <img class="poster" src="https://www.film.ru/sites/default/files/filefield_paths/deadpool_and_wolverine_ver2.jpg" alt="Дэдпул и Росомаха">
-            <img class="poster" src="https://www.film.ru/sites/default/files/filefield_paths/inside_out_two_ver2.jpg" alt="Головоломка 2">
-            <img class="poster" src="https://www.film.ru/sites/default/files/filefield_paths/spider_man_across_the_spider_verse_ver2.jpg" alt="Человек-паук: Паутина вселенных">
-            <img class="poster" src="https://www.film.ru/sites/default/files/filefield_paths/twisters_ver2.jpg" alt="Смерч 2">
-        </div>
+    <div class="search-box">
+      <input type="text" id="movieInput" placeholder="Введите название фильма..." autocomplete="off">
+      <button id="searchButton">Найти</button>
     </div>
 
-    <script src="script.js"></script>
+    <div id="loading" class="loading hidden"> Ищем фильмы...</div>
+    <div id="error" class="error hidden"></div>
+    <div id="results" class="results"></div>
+
+    <div class="note">
+      <p>Чтобы отключить рекламу:</p>
+      <code id="dnsLink" class="clickable-link" onclick="copyDnsLink()">https://dns.adguard-dns.com/dns-query</code>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
