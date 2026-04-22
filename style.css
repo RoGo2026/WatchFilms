@@ -1,1 +1,122 @@
 
+:root {
+  --bg-primary: #0b0b0f;
+  --bg-card: #15151e;
+  --bg-input: #1e1e2a;
+  --accent: #e50914;
+  --accent-hover: #ff1a25;
+  --text-main: #ffffff;
+  --text-muted: #a0a0b0;
+  --border: rgba(255,255,255,0.08);
+  --shadow: 0 8px 24px rgba(0,0,0,0.5);
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top, #1a1a2e 0%, var(--bg-primary) 100%);
+  min-height: 100vh;
+  color: var(--text-main);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* === СТИЛИ ДЛЯ КАРТИНОК ПО БОКАМ === */
+.wallpaper-decoration {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none; /* Чтобы нельзя было кликнуть */
+  z-index: -1; /* Чтобы были ПОД основным контентом */
+  overflow: hidden;
+}
+
+.deco-img {
+  position: absolute;
+  opacity: 0.4; /* Полупрозрачность */
+  transition: opacity 0.3s;
+  filter: drop-shadow(0 0 10px rgba(0,0,0,0.8));
+}
+
+/* Расположение картинок */
+.deco-left-1 { top: 15%; left: 2%; width: 180px; transform: rotate(-5deg); }
+.deco-left-2 { top: 55%; left: 3%; width: 160px; transform: rotate(5deg); }
+
+.deco-right-1 { top: 15%; right: 2%; width: 180px; transform: rotate(5deg); }
+.deco-right-2 { top: 55%; right: 3%; width: 160px; transform: rotate(-5deg); }
+
+.deco-bottom { bottom: 5%; left: 50%; transform: translateX(-50%) rotate(0deg); width: 200px; opacity: 0.3; }
+
+/* Скрываем картинки на телефонах, чтобы не мешали */
+@media (max-width: 1000px) {
+  .wallpaper-decoration { display: none; }
+}
+
+/* === ОСНОВНОЙ ДИЗАЙН === */
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  position: relative; /* Чтобы быть над фоном */
+  z-index: 1;
+}
+
+.header { text-align: center; margin-bottom: 24px; }
+.header h1 {
+  font-size: 28px;
+  background: linear-gradient(135deg, #fff, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 8px;
+}
+.header p { color: var(--text-muted); font-size: 14px; }
+
+.search-box { display: flex; gap: 12px; margin-bottom: 20px; }
+#movieInput {
+  flex: 1; padding: 14px 16px; background: var(--bg-input);
+  border: 1px solid var(--border); border-radius: 12px;
+  color: white; font-size: 16px; outline: none;
+}
+#movieInput:focus { border-color: var(--accent); }
+
+button {
+  padding: 14px 24px; background: var(--accent); border: none;
+  border-radius: 12px; color: white; font-weight: bold; cursor: pointer;
+}
+button:hover { background: var(--accent-hover); }
+
+.results {
+  display: flex; flex-direction: column; gap: 12px;
+  margin-top: 20px; max-height: 60vh; overflow-y: auto;
+}
+.results::-webkit-scrollbar { width: 6px; }
+.results::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
+
+.movie-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 12px; background: rgba(255,255,255,0.05);
+  border-radius: 12px; cursor: pointer;
+}
+.movie-item:hover { background: rgba(255,255,255,0.1); }
+.movie-poster { width: 50px; height: 75px; object-fit: cover; border-radius: 8px; }
+.movie-title { font-size: 16px; font-weight: 600; }
+.movie-details { font-size: 13px; color: #aaa; }
+
+.hidden { display: none; }
+.error { color: #ff4d4d; text-align: center; margin: 15px 0; }
+.loading { text-align: center; color: #888; margin: 20px 0; }
+
+.note { margin-top: 30px; text-align: center; font-size: 12px; color: #666; }
+.clickable-link {
+  display: inline-block; margin-top: 5px; color: var(--accent);
+  cursor: pointer; text-decoration: underline;
+}
