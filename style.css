@@ -55,7 +55,8 @@
     top: 2%; 
     left: 50%; 
     transform: translateX(-50%); 
-    width: 200px; 
+    width: 350px;        /* было 200px → сделайте больше */
+    height: auto;        /* сохранит пропорции */
     opacity: 0.4;
     z-index: 0;
 }
@@ -257,8 +258,8 @@ button:active {
 }
 
 .movie-poster {
-    width: 200px;
-    height: 450px;
+    width: 55px;
+    height: 80px;
     object-fit: cover;
     border-radius: 12px;
     background: #2a2a4a;
