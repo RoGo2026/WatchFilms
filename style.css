@@ -22,18 +22,18 @@ body {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;                 /* увеличенный зазор между колонками */
     max-width: 1400px;
     width: 100%;
     margin: 0 auto;
 }
 
-/* Боковые панели с картинками */
+/* Боковые панели – 3 крупных постера вертикально */
 .poster-wall {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    width: 160px;          /* фиксированная ширина под постеры */
+    gap: 30px;                 /* отступы между постерами, как на картинке */
+    width: 220px;              /* увеличенная ширина для больших постеров */
     flex-shrink: 0;
 }
 
@@ -42,29 +42,8 @@ body {
     width: 100%;
     aspect-ratio: 2 / 3;
     object-fit: cover;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(230, 57, 70, 0.3);
-    background-color: #1e1a2e; /* фон на случай незагрузки */
-    display: block;
-}
-
-/* Блок с легендарными постерами */
-.legend-block {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(230, 57, 70, 0.3);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.legend-poster {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
     border: 1px solid rgba(230, 57, 70, 0.3);
     background-color: #1e1a2e;
     display: block;
@@ -74,7 +53,7 @@ body {
 .container {
     flex: 1;
     max-width: 600px;
-    min-width: 300px;
+    min-width: 320px;
     background: rgba(30, 30, 50, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -323,8 +302,8 @@ code.clickable-link:hover,
     transform: scale(1.01);
 }
 
-/* ----- АДАПТИВ ДЛЯ БОКОВЫХ ПАНЕЛЕЙ ----- */
-@media (max-width: 800px) {
+/* ----- АДАПТИВ: на мобильных боковые панели скрываются ----- */
+@media (max-width: 900px) {
     .poster-wall {
         display: none;
     }
