@@ -1,4 +1,4 @@
-// Дожидаемся загрузки DOM
+// Дожидаемся загрузки DOM, чтобы элементы точно существовали
 document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton');
     const movieInput = document.getElementById('movieInput');
@@ -16,8 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-const API_KEY = '3W9C8C5-2H1M85S-GEXEN27-S5DG27B';
-
+// Функция поиска (доступна глобально)
 async function searchMovies() {
     const query = document.getElementById('movieInput').value.trim();
     if (!query) {
@@ -25,6 +24,10 @@ async function searchMovies() {
         return;
     }
 
+    // 🔑 ВСТАВЬТЕ СВОЙ НОВЫЙ ТОКЕН (СКОПИРУЙТЕ ИЗ БОТА)
+    const API_KEY = '3W9C8C5-2H1M85S-GEXEN27-S5DG27B';
+    
+    // ✅ Правильный домен API (poiskkino.dev)
     const url = `https://api.poiskkino.dev/v1.4/movie/search?page=1&limit=10&query=${encodeURIComponent(query)}`;
 
     const loading = document.getElementById('loading');
@@ -88,7 +91,8 @@ function displayResults(movies) {
 }
 
 function openMovie(kinopoiskId) {
-    window.open(`https://www.kinopoisk.wtf/film/${kinopoiskId}/`, '_blank');
+    const wtfUrl = `https://www.kinopoisk.wtf/film/${kinopoiskId}/`;
+    window.open(wtfUrl, '_blank');
 }
 
 function showError(message) {
@@ -96,13 +100,14 @@ function showError(message) {
     errorDiv.textContent = message;
     errorDiv.classList.remove('hidden');
 }
-
+// Функция копирования DNS-ссылки при клике на саму ссылку
 function copyDnsLink() {
     const linkElement = document.getElementById('dnsLink');
     if (!linkElement) return;
     
     const linkText = linkElement.textContent;
     navigator.clipboard.writeText(linkText).then(() => {
+        // Визуальное подтверждение: временно меняем текст ссылки
         const originalText = linkElement.textContent;
         linkElement.textContent = '✅ Ссылка скопирована!';
         setTimeout(() => {
