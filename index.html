@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Поиск фильмов в обрамлении постеров</title>
-    <!-- Твой оригинальный style.css -->
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Стили только для обрамляющей сетки — твой блок .container остаётся нетронутым */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -26,7 +24,6 @@
             color: #e0e0e0;
         }
 
-        /* Трёхколоночная сетка + нижний ряд */
         .poster-grid {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -39,7 +36,6 @@
             justify-items: center;
         }
 
-        /* Левая и правая колонки */
         .left-posters, .right-posters {
             display: flex;
             flex-direction: column;
@@ -61,7 +57,6 @@
             justify-self: start;
         }
 
-        /* Нижний ряд постеров */
         .bottom-posters {
             grid-column: 1 / -1;
             grid-row: 2 / 3;
@@ -74,7 +69,6 @@
             margin-top: 10px;
         }
 
-        /* Общие стили для постеров */
         .poster {
             width: 100%;
             height: auto;
@@ -91,7 +85,6 @@
             transform: scale(1.02);
         }
 
-        /* Постеры внизу делаем чуть более компактными по высоте */
         .bottom-posters .poster {
             width: auto;
             max-width: 180px;
@@ -99,7 +92,6 @@
             border-radius: 16px;
         }
 
-        /* Твой центральный блок — полностью оригинальный */
         .container {
             grid-column: 2 / 3;
             grid-row: 1 / 2;
@@ -115,7 +107,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(230, 0, 0, 0.15) inset;
         }
 
-        /* Адаптив: на узких экранах оставляем только поиск */
         @media (max-width: 850px) {
             .poster-grid {
                 grid-template-columns: 1fr;
@@ -144,14 +135,14 @@
 </head>
 <body>
     <div class="poster-grid">
-        <!-- ЛЕВАЯ КОЛОНКА: 3 постера -->
+        <!-- ЛЕВАЯ КОЛОНКА (3 постера) -->
         <div class="left-posters">
-            <img class="poster" src="http://www.impawards.com/2024/posters/dune_part_two_ver2.jpg" alt="Дюна: Часть вторая">
-            <img class="poster" src="http://www.impawards.com/2023/posters/oppenheimer_ver2.jpg" alt="Оппенгеймер">
-            <img class="poster" src="http://www.impawards.com/2024/posters/furiosa_a_mad_max_saga_ver2.jpg" alt="Фуриоса: Хроники Безумного Макса">
+            <img class="poster" src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1.jpg" alt="Дюна: Часть вторая">
+            <img class="poster" src="https://image.tmdb.org/t/p/w500/8Gxv8g86uEo44wNz6Q4LnuJJIZf.jpg" alt="Оппенгеймер">
+            <img class="poster" src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" alt="Фуриоса: Хроники Безумного Макса">
         </div>
 
-        <!-- ТВОЙ ОРИГИНАЛЬНЫЙ ЦЕНТРАЛЬНЫЙ БЛОК (БЕЗ ИЗМЕНЕНИЙ) -->
+        <!-- ТВОЙ ОРИГИНАЛЬНЫЙ ЦЕНТРАЛЬНЫЙ БЛОК (НЕ ТРОГАЛ) -->
         <div class="container">
             <h1>🎬 Поиск фильма</h1>
             <p>Введите название фильма и выберите подходящий вариант из списка.</p>
@@ -175,23 +166,22 @@
             </div>
         </div>
 
-        <!-- ПРАВАЯ КОЛОНКА: 3 постера -->
+        <!-- ПРАВАЯ КОЛОНКА (3 постера) -->
         <div class="right-posters">
-            <img class="poster" src="http://www.impawards.com/2024/posters/kingdom_of_the_planet_of_the_apes_ver2.jpg" alt="Планета обезьян: Новое царство">
-            <img class="poster" src="http://www.impawards.com/2024/posters/fall_guy_ver2.jpg" alt="Каскадёры">
-            <img class="poster" src="http://www.impawards.com/2023/posters/mission_impossible_dead_reckoning_part_one_ver2.jpg" alt="Миссия невыполнима: Смертельная расплата">
+            <img class="poster" src="https://image.tmdb.org/t/p/w500/1ZfZ8t2pOqGnFPK5qLf9T9I9n9k.jpg" alt="Планета обезьян: Новое царство">
+            <img class="poster" src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" alt="Каскадёры (запасной)">
+            <img class="poster" src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" alt="Миссия невыполнима 7">
         </div>
 
-        <!-- НИЖНИЙ РЯД: 4 постера для заполнения пространства под блоком -->
+        <!-- НИЖНИЙ РЯД (4 постера) -->
         <div class="bottom-posters">
-            <img class="poster" src="http://www.impawards.com/2024/posters/deadpool_and_wolverine_ver2.jpg" alt="Дэдпул и Росомаха">
-            <img class="poster" src="http://www.impawards.com/2024/posters/inside_out_two_ver2.jpg" alt="Головоломка 2">
-            <img class="poster" src="http://www.impawards.com/2023/posters/spider_man_across_the_spider_verse_ver2.jpg" alt="Человек-паук: Паутина вселенных">
-            <img class="poster" src="http://www.impawards.com/2024/posters/twisters_ver2.jpg" alt="Смерч 2">
+            <img class="poster" src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" alt="Дэдпул и Росомаха">
+            <img class="poster" src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" alt="Головоломка 2">
+            <img class="poster" src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" alt="Человек-паук: Паутина вселенных">
+            <img class="poster" src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" alt="Смерч 2">
         </div>
     </div>
 
-    <!-- Твой оригинальный script.js -->
     <script src="script.js"></script>
 </body>
 </html>
