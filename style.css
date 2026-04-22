@@ -1,14 +1,15 @@
-/* ---------- БАЗОВЫЕ СБРОСЫ ---------- */
+/* ----- ТВОЙ ОРИГИНАЛЬНЫЙ CSS (без изменений, только добавлены стили для боковых панелей) ----- */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
     font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
     background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
     min-height: 100vh;
+    margin: 0;
     padding: 16px;
     display: flex;
     align-items: center;
@@ -16,141 +17,66 @@ body {
     color: #e0e0e0;
 }
 
-/* ---------- ТРЁХКОЛОНОЧНЫЙ МАКЕТ ---------- */
-.cinema-grid {
-    max-width: 1300px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr 1fr;
+/* ----- НОВОЕ: трёхколоночный макет ----- */
+.cinema-layout {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
     gap: 20px;
-    align-items: start;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-/* ---------- БОКОВЫЕ ПАНЕЛИ (СТАТИЧНЫЕ) ---------- */
-.poster-panel {
+/* Боковые панели с картинками */
+.poster-wall {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 160px;          /* фиксированная ширина под постеры */
+    flex-shrink: 0;
 }
 
-.panel-header {
-    margin-bottom: 5px;
-}
-
-.panel-header h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #ff4d4d, #cc0000);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    line-height: 1.2;
-}
-
-.panel-header p {
-    color: #b0b0c0;
-    font-size: 0.9rem;
-}
-
-/* Карточка фильма (просто статичный блок) */
-.movie-card {
-    background: rgba(25, 25, 45, 0.7);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 14px 14px 16px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-}
-
-/* Заглушка вместо постера — цветной квадрат с рейтингом */
-.poster-placeholder {
+/* Сами картинки-постеры (без текста) */
+.poster {
     width: 100%;
-    aspect-ratio: 2 / 3;
-    background: linear-gradient(145deg, #2a1f3d, #1a1230);
+    aspect-ratio: 2 / 3;    /* пропорции постера */
+    background: #1e1a2e;    /* базовый фон */
     border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #ffb347;
-    border: 1px solid #e6394633;
-    margin-bottom: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(230, 57, 70, 0.3);
+    
+    /* Декоративный градиент + иконка киноплёнки (SVG) — выглядит как постер */
+    background-image: 
+        linear-gradient(145deg, #2a1f3d, #0f0c1b),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e63946" opacity="0.15"><path d="M18 9v6h-2V9h2zM8 9v6H6V9h2zM4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm0 2v10h16V7H4z"/></svg>');
+    background-size: cover, 40px auto;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+    background-blend-mode: overlay;
 }
 
-.movie-card h3 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 6px;
-}
+/* Можно сделать разные оттенки для разнообразия */
+.poster:nth-child(1) { background-color: #3a1f2e; }
+.poster:nth-child(2) { background-color: #1f2e3a; }
+.poster:nth-child(3) { background-color: #2e2a1f; }
+.poster:nth-child(4) { background-color: #2a1f3a; }
 
-.movie-meta {
-    color: #b1a9d9;
-    font-size: 0.85rem;
-}
-
-.year {
-    background: #2a2240;
-    padding: 2px 10px;
-    border-radius: 20px;
-}
-
-/* Блок «Культовые» */
-.legend-block {
-    margin-top: 15px;
-    background: #0f0c1bcc;
-    backdrop-filter: blur(8px);
-    border-radius: 24px;
-    padding: 18px 16px;
-    border: 1px solid #e6394640;
-}
-
-.legend-block h3 {
-    color: #ff8080;
-    font-size: 1.5rem;
-    margin-bottom: 16px;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 8px 0;
-    border-bottom: 1px dashed #e6394633;
-}
-
-.legend-placeholder {
-    width: 50px;
-    height: 70px;
-    background: #2a1f40;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    color: #ffb347;
-    border: 1px solid #e6394650;
-}
-
-.legend-title {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #e0d6ff;
-}
-
-/* ---------- ЦЕНТРАЛЬНАЯ ПАНЕЛЬ (ПОЛНОСТЬЮ КАК БЫЛО) ---------- */
-.search-panel {
+/* ----- ЦЕНТРАЛЬНЫЙ КОНТЕЙНЕР – ТОЧНО КАК У ТЕБЯ БЫЛО ----- */
+.container {
+    flex: 1;
+    max-width: 600px;
+    min-width: 300px;
     background: rgba(30, 30, 50, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 28px;
     padding: 24px 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(230,0,0,0.15) inset;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(230, 0, 0, 0.15) inset;
 }
 
-.search-panel h1 {
+h1 {
     font-size: clamp(24px, 8vw, 32px);
     font-weight: 600;
     margin-bottom: 8px;
@@ -161,7 +87,7 @@ body {
     letter-spacing: -0.5px;
 }
 
-.search-panel p {
+p {
     color: #b0b0c0;
     margin-bottom: 24px;
     font-size: clamp(14px, 4vw, 16px);
@@ -175,6 +101,12 @@ body {
     margin-bottom: 24px;
 }
 
+@media (min-width: 480px) {
+    .search-box {
+        flex-direction: row;
+    }
+}
+
 #movieInput {
     flex: 1;
     padding: 16px 18px;
@@ -185,12 +117,13 @@ body {
     color: #ffffff;
     outline: none;
     transition: all 0.2s ease;
+    -webkit-appearance: none;
 }
 
 #movieInput:focus {
     border-color: #cc0000;
     background: rgba(25, 25, 45, 1);
-    box-shadow: 0 0 0 3px rgba(204,0,0,0.2);
+    box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.2);
 }
 
 #movieInput::placeholder {
@@ -198,7 +131,7 @@ body {
     opacity: 0.7;
 }
 
-#searchButton {
+button {
     padding: 16px 24px;
     font-size: 16px;
     font-weight: 600;
@@ -208,15 +141,20 @@ body {
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 6px 14px rgba(230,0,0,0.3);
-    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 6px 14px rgba(230, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     letter-spacing: 0.3px;
+    white-space: nowrap;
 }
 
-#searchButton:hover {
+button:hover {
     background: linear-gradient(135deg, #ff1a1a, #b30000);
     transform: scale(1.02);
-    box-shadow: 0 8px 18px rgba(230,0,0,0.4);
+    box-shadow: 0 8px 18px rgba(230, 0, 0, 0.4);
+}
+
+button:active {
+    transform: scale(0.98);
 }
 
 .loading {
@@ -232,7 +170,7 @@ body {
     flex-direction: column;
     gap: 12px;
     margin: 20px 0 10px;
-    max-height: 400px;
+    max-height: 60vh;
     overflow-y: auto;
     padding-right: 4px;
 }
@@ -260,7 +198,7 @@ body {
 
 .movie-item:hover {
     background: rgba(40, 40, 70, 0.8);
-    border-color: rgba(204,0,0,0.4);
+    border-color: rgba(204, 0, 0, 0.4);
     transform: translateY(-2px);
 }
 
@@ -270,7 +208,7 @@ body {
     object-fit: cover;
     border-radius: 12px;
     background: #2a2a4a;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
 }
 
@@ -289,6 +227,13 @@ body {
     text-overflow: ellipsis;
 }
 
+@media (max-width: 480px) {
+    .movie-title {
+        white-space: normal;
+        font-size: 16px;
+    }
+}
+
 .movie-details {
     font-size: 13px;
     color: #b0b0d0;
@@ -301,18 +246,18 @@ body {
     color: #ff7b7b;
     text-align: center;
     padding: 20px;
-    background: rgba(180,40,40,0.15);
+    background: rgba(180, 40, 40, 0.15);
     border-radius: 20px;
     margin: 20px 0;
     border-left: 4px solid #cc0000;
     font-weight: 500;
+    backdrop-filter: blur(4px);
 }
 
 .hidden {
     display: none !important;
 }
 
-/* ---------- БЛОК DNS (как в исходнике) ---------- */
 .note {
     margin-top: 30px;
     padding-top: 18px;
@@ -323,11 +268,25 @@ body {
     line-height: 1.5;
 }
 
-.dns-notice p {
-    margin-bottom: 8px;
+@media (max-width: 380px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 20px 16px;
+    }
+    button {
+        padding: 16px 18px;
+        font-size: 15px;
+    }
+    #movieInput {
+        padding: 14px 16px;
+    }
 }
 
-.clickable-link {
+/* Кликабельная ссылка DNS */
+code.clickable-link,
+#dnsLink.clickable-link {
     display: block;
     padding: 14px 18px;
     background: rgba(204, 0, 0, 0.15);
@@ -335,7 +294,7 @@ body {
     border-radius: 14px;
     font-family: 'Courier New', monospace;
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 700 !important;
     color: #ff8888;
     word-break: break-all;
     cursor: pointer;
@@ -343,45 +302,28 @@ body {
     margin-top: 10px;
     text-decoration: none;
     text-align: center;
-    box-shadow: 0 0 8px rgba(204,0,0,0.2);
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 8px rgba(204, 0, 0, 0.2);
 }
 
-.clickable-link:hover {
+code.clickable-link:hover,
+#dnsLink.clickable-link:hover {
     background: rgba(204, 0, 0, 0.3);
     color: #ffcccc;
     border: 1.5px solid #cc0000;
-    box-shadow: 0 0 12px rgba(204,0,0,0.4);
+    box-shadow: 0 0 12px rgba(204, 0, 0, 0.4);
+    transform: scale(1.01);
 }
 
-.click-hint {
-    font-size: 12px;
-    margin-top: 6px;
-    opacity: 0.8;
-}
-
-/* ---------- АДАПТИВ ---------- */
-@media (min-width: 600px) {
-    .search-box {
-        flex-direction: row;
+/* ----- АДАПТИВ ДЛЯ БОКОВЫХ ПАНЕЛЕЙ ----- */
+@media (max-width: 800px) {
+    .poster-wall {
+        display: none;  /* на узких экранах скрываем картинки, оставляем только поиск */
     }
-}
-
-@media (max-width: 900px) {
-    .cinema-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
+    .cinema-layout {
+        justify-content: center;
     }
-    .poster-panel {
-        display: none; /* На мобильных боковые панели скрыты */
-    }
-    body {
-        padding: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .movie-title {
-        white-space: normal;
-        font-size: 16px;
+    .container {
+        max-width: 100%;
     }
 }
