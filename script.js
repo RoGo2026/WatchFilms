@@ -10,14 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Тот самый домен .cam, который ты использовал раньше
 const VIEW_DOMAIN = 'www.kinopoisk.cam'; 
 
 async function searchMovies() {
     const query = document.getElementById('movieInput').value.trim();
     if (!query) return;
-
-    // Твой новый рабочий ключ API
+     
     const API_KEY = '22482d11-bce8-45d8-8bed-0628cd955284'; 
     const url = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${encodeURIComponent(query)}&page=1`;
 
@@ -65,7 +63,7 @@ function displayResults(movies) {
 }
 
 function openMovie(id) {
-    // Подставляем ID в твой привычный домен .cam
+    // ID
     const finalUrl = `https://${VIEW_DOMAIN}/film/${id}/`;
     window.open(finalUrl, '_blank');
 }
