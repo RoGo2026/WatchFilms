@@ -27,7 +27,7 @@ async function searchMovies() {
     }
 
     // 🔑 ВСТАВЬТЕ СВОЙ НОВЫЙ ТОКЕН (СКОПИРУЙТЕ ИЗ БОТА)
-    const API_KEY = 'XBBSZH5-V8KMK5P-K4H2RM2-REGRQFX';
+    const API_KEY = '8VSHQ9V-W2GMRK6-QWPR0TE-ZY58XK1';
 
     // ✅ Правильный домен API (poiskkino.dev)
     const url = `https://api.poiskkino.dev/v1.4/movie/search?page=1&limit=10&query=${encodeURIComponent(query)}`;
