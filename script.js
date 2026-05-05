@@ -13,7 +13,7 @@ async function searchMovies() {
     if (!query) return;
 
     // Ипользуем стабильный домен api.kinopoisk.dev
-    const API_KEY = '8VSHQ9V-W2GMRK6-QWPR0TE-ZY58XK1'; 
+    const API_KEY = '27SWCTP-AP3MRP5-QHKV3QE-3APP7B5'; 
     const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=10&query=${encodeURIComponent(query)}`;
 
     const loading = document.getElementById('loading');
