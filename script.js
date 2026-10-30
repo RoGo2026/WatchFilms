@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-const VIEW_DOMAIN = 'www.kinopoisk.cam'; 
+const VIEW_DOMAIN = 'www.kinopoisk.wtf'; 
 
 async function searchMovies() {
     const query = document.getElementById('movieInput').value.trim();
